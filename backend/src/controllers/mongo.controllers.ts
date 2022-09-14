@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { PacienteInterface } from '../../types.dt';
-import PacientsModel from '../../models/mongodb/Pacients';
+import { PacienteInterface } from '../types.dt';
+import PacientsModel from '../models/mongodb/Pacients';
 
 export const allPacients = async (req: Request, res: Response) => {
    const allPacients = await PacientsModel.find();

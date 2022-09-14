@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
 
 enum Genero {
    Masculino = 'Masculino',
@@ -7,10 +7,11 @@ enum Genero {
 }
 
 @Entity()
-export class Pacients {
+export class Pacients extends BaseEntity {
    @Column({
       length: 10,
-      primary: true
+      primary: true,
+      unique: true
    })
       cedula: string;
 

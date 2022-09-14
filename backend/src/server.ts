@@ -4,8 +4,8 @@ import cors from 'cors';
 const app = express();
 
 import indexRoutes from './routes/index.routes';
-import pacientRoutesMongoDB from './routes/mongo/pacients.routes';
-import pacientRoutesMySQL from './routes/mysql/pacients.routes';
+import pacientRoutesMongoDB from './routes/mongo.routes';
+import pacientRoutesMySQL from './routes/mysql.routes';
 
 app.set('port', process.env.PORT || 3000);
 

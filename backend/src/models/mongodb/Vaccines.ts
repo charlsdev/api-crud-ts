@@ -7,20 +7,23 @@ import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
    },
 })
 
-class Vaccines {
+export class Vaccines {
    @prop({
+      type: String,
       maxlength: 75,
       required: true
    })
       vacuna: string;
 
    @prop({
+      type: String,
       maxlength: 10,
       required: true
    })
       lote: string;
 
    @prop({
+      type: String,
       maxlength: 10,
       required: true
    })

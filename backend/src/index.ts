@@ -1,3 +1,4 @@
+import './dev';
 import 'dotenv/config';
 
 import { connMySQL } from './db/mysql';

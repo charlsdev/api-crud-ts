@@ -5,14 +5,14 @@ import {
    allPacients,
    deletePacient,
    onePacient,
-   savePacient,
+   savePaciente,
    updatePacient
-} from '../../controllers/mongo/pacients.controllers';
+} from '../controllers/mysql.controllers';
 
 router.get('/', allPacients);
-router.post('/', savePacient);
+router.post('/', savePaciente);
 router.get('/:id', onePacient);
 router.delete('/:id', deletePacient);
-router.put('/:id', updatePacient);
+router.put('/', updatePacient);
 
 export default router;

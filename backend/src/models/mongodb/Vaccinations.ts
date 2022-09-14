@@ -1,7 +1,7 @@
-import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
-// import { Nurses } from './Nurses';
-// import { Pacients } from './Pacients';
-// import { Vaccines } from './Vaccines';
+import { prop, getModelForClass, modelOptions, Ref } from '@typegoose/typegoose';
+import { Pacients } from './Pacients';
+import { Nurses } from './Nurses';
+import { Vaccines } from './Vaccines';
 
 @modelOptions({
    schemaOptions: {
@@ -11,18 +11,28 @@ import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
 })
 
 class Vaccinations {
+   @prop({ ref: () => Pacients })
+      idPacient: Ref<Pacients>;
+
+   @prop({ ref: () => Nurses })
+      idNurse: Ref<Nurses>;
+
+   @prop({ ref: () => Vaccines })
+      idVaccines: Ref<Vaccines>;
+
    @prop({
+      type: String,
       maxlength: 10,
       required: true
    })
       fecha: string;
 
    @prop({
+      type: String,
       maxlength: 255,
       required: true
    })
       observaciones: string;
-
 }
 
 const VaccinationSchema = getModelForClass(Vaccinations);
