@@ -1,3 +1,4 @@
+
 export const ERRORS_DB: { [index: string]: string } = {
    'PROTOCOL_CONNECTION_LOST': 'Conexión a la Base de datos cerrada',
    'ER_CON_COUNT_ERROR': 'Muchas conexiones a la Base de datos',
@@ -16,4 +17,11 @@ export interface PacienteInterface {
    direccion: string,
    telefono: string,
    email: string
+}
+
+export interface VaccineInterface {
+   id: string,
+   vacuna: string,
+   lote: string,
+   fechaCaducidad: Date
 }

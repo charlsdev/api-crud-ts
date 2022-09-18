@@ -4,6 +4,7 @@ import { Nurses } from '../models/mysql/Nurses';
 import { Pacients } from '../models/mysql/Pacients';
 import { Vaccinations } from '../models/mysql/Vaccinations';
 import { Vaccines } from '../models/mysql/Vaccines';
+import { recorridoGenerate } from '../generator/faker';
 
 export const connMySQL = async () => {
    const conn = new DataSource({
@@ -24,6 +25,8 @@ export const connMySQL = async () => {
    conn.initialize()
       .then(() => {
          console.log(`MySQLDB is connect to ${process.env.HOST_DB} - ${process.env.NAME_DB}...`);
+
+         recorridoGenerate();
       })
       .catch((err) => {
          const errorDB = ERRORS_DB[err.code];

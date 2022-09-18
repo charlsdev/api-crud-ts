@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, Column, BaseEntity } from 'typeorm';
 import { Nurses } from './Nurses';
 import { Pacients } from './Pacients';
 import { Vaccines } from './Vaccines';
 
 @Entity()
-export class Vaccinations {
+export class Vaccinations extends BaseEntity {
    @PrimaryGeneratedColumn('uuid')
       id: string;
 
@@ -33,9 +33,9 @@ export class Vaccinations {
       idVacuna: Vaccines;
 
    @Column({
-      length: 10
+      type: 'date'
    })
-      fecha: string;
+      fecha: Date;
 
    @Column({
       length: 255

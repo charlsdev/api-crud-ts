@@ -2,7 +2,7 @@ import figlet from 'figlet';
 import chalk from 'chalk';
 
 console.log(
-   chalk.cyanBright.bold(
+   chalk.redBright.bold(
       figlet.textSync('CharlsDEV', {
          font: 'Slant',
          horizontalLayout: 'fitted',
@@ -13,8 +13,8 @@ console.log(
 );
 
 console.log();
-console.log(chalk.yellow(' Author: ') + chalk.green('CharlsDEV'));
-console.log(chalk.yellow(' Version: ') + chalk.green('1.0.0'));
-console.log(chalk.yellow(' License: ') + chalk.green('MIT'));
-console.log(chalk.yellow(' Description: ') + chalk.green('API de TypeScript con MySQL and MongoDB...'));
+console.log(chalk.blueBright.bold(' Author: ') + chalk.yellowBright.italic('CharlsDEV'));
+console.log(chalk.blueBright.bold(' Version: ') + chalk.yellowBright.italic('1.0.0'));
+console.log(chalk.blueBright.bold(' License: ') + chalk.yellowBright.italic('MIT'));
+console.log(chalk.blueBright.bold(' Description: ') + chalk.yellowBright.italic('API de TypeScript con MySQL and MongoDB...'));
 console.log();

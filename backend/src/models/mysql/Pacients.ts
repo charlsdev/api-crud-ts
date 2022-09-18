@@ -1,11 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
 
-enum Genero {
-   Masculino = 'Masculino',
-   Femenino = 'Femenino',
-   NoDefinido = 'No Definido'
-}
-
 @Entity()
 export class Pacients extends BaseEntity {
    @Column({
@@ -31,11 +25,9 @@ export class Pacients extends BaseEntity {
       fechNacimiento: string;
 
    @Column({
-      type: 'enum',
-      enum: Genero,
-      default: Genero.NoDefinido
+      length: 10
    })
-      genero: Genero;
+      genero: string;
 
    @Column({
       length: 75
@@ -48,7 +40,11 @@ export class Pacients extends BaseEntity {
       telefono: string;
 
    @Column({
-      length: 75
+      length: 75,
+      transformer: {
+         to: (value: string) => value.toLowerCase(),
+         from: (value: string) => value
+      }
    })
       email: string;
 

@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
-export class Vaccines {
+export class Vaccines extends BaseEntity {
    @PrimaryGeneratedColumn('uuid')
       id: string;
 
@@ -18,7 +18,7 @@ export class Vaccines {
    @Column({
       type: 'date'
    })
-      fechaCaducidad: string;
+      fechaCaducidad: Date;
 
    @CreateDateColumn()
       createdDate: Date;
