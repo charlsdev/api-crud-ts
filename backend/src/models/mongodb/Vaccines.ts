@@ -23,11 +23,10 @@ export class Vaccines {
       lote: string;
 
    @prop({
-      type: String,
-      maxlength: 10,
+      type: Date,
       required: true
    })
-      fechaCaducidad: string;
+      fechaCaducidad: Date;
 }
 
 const VaccineSchema = getModelForClass(Vaccines);

@@ -3,8 +3,9 @@ import chalk from 'chalk';
 import moment from 'moment';
 import { Nurses } from '../models/mysql/Nurses';
 import { Pacients } from '../models/mysql/Pacients';
+import { Vaccinations } from '../models/mysql/Vaccinations';
 import { Vaccines } from '../models/mysql/Vaccines';
-import { PacienteInterface, VaccineInterface } from '../types.dt';
+import { PacienteInterface, VaccinationInterface, VaccineInterface } from '../types.dt';
 
 let createRandomUser: PacienteInterface,
    createRandomVaccine: VaccineInterface;
@@ -89,12 +90,34 @@ const saveVaccine = async () => {
    }
 };
 
+const saveVaccination = async () => {
+   try {
+      const allPacients = await Pacients.find();
+      const allNurses = await Nurses.find();
+      const allVaccines = await Vaccines.find();
+
+      const newVaccination: VaccinationInterface = {
+         id: faker.datatype.uuid(),
+         cedPaciente: (allPacients[Math.floor(Math.random() * allPacients.length)].cedula).toString(),
+         cedEnfermera: (allNurses[Math.floor(Math.random() * allNurses.length)].cedula).toString(),
+         idVacuna: (allVaccines[Math.floor(Math.random() * allVaccines.length)].id).toString(),
+         fecha: moment(randomDate(new Date(2015, 0, 1), new Date())).format('YYYY/MM/DD'),
+         observaciones: faker.lorem.sentence()
+      };
+
+      await Vaccinations.insert(newVaccination);
+   } catch (e) {
+      console.error(e);
+   }
+};
+
 export const recorridoGenerate = async () => {
-   let a = 0, b = 0, c = 0;
+   let a = 0, b = 0, c = 0, d = 0;
 
    const countPacients = await Pacients.count();
    const countNurses = await Nurses.count();
    const countVaccines = await Vaccines.count();
+   const countVaccinations = await Vaccinations.count();
 
    if(countPacients < 25) {
       for (a = 0; a < 25; a++) {
@@ -118,5 +141,13 @@ export const recorridoGenerate = async () => {
       }
 
       console.log(chalk.blueBright.bold.italic(`${c} Vaccines created...`));
+   }
+
+   if(countVaccinations < 100) {
+      for (d = 0; d < 100; d++) {
+         await saveVaccination();
+      }
+
+      console.log(chalk.magentaBright.bold.italic(`${d} Vaccinations created...`));
    }
 };

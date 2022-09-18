@@ -21,11 +21,10 @@ class Vaccinations {
       idVaccines: Ref<Vaccines>;
 
    @prop({
-      type: String,
-      maxlength: 10,
+      type: Date,
       required: true
    })
-      fecha: string;
+      fecha: Date;
 
    @prop({
       type: String,
