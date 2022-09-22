@@ -5,7 +5,7 @@ import { Nurses } from '../models/mysql/Nurses';
 import { Pacients } from '../models/mysql/Pacients';
 import { Vaccinations } from '../models/mysql/Vaccinations';
 import { Vaccines } from '../models/mysql/Vaccines';
-import { PacienteInterface, VaccinationInterface, VaccineInterface } from '../types.dt';
+import { PacienteInterface, VaccineInterface } from '../types.dt';
 
 let createRandomUser: PacienteInterface,
    createRandomVaccine: VaccineInterface;
@@ -96,7 +96,8 @@ const saveVaccination = async () => {
       const allNurses = await Nurses.find();
       const allVaccines = await Vaccines.find();
 
-      const newVaccination: VaccinationInterface = {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const newVaccination: any = {
          id: faker.datatype.uuid(),
          cedPaciente: (allPacients[Math.floor(Math.random() * allPacients.length)].cedula).toString(),
          cedEnfermera: (allNurses[Math.floor(Math.random() * allNurses.length)].cedula).toString(),

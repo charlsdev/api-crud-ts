@@ -6,7 +6,10 @@ import {
    deletePacient,
    onePacient,
    savePaciente,
-   updatePacient
+   updatePacient,
+
+   allVaccinations,
+   oneVaccination
 } from '../controllers/mysql.controllers';
 
 router.get('/', allPacients);
@@ -14,5 +17,8 @@ router.post('/', savePaciente);
 router.get('/:id', onePacient);
 router.delete('/:id', deletePacient);
 router.put('/', updatePacient);
+
+router.get('/vacc/all', allVaccinations);
+router.get('/vacc/:id', oneVaccination);
 
 export default router;

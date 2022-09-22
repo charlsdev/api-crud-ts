@@ -38,7 +38,7 @@ export class Vaccinations extends BaseEntity {
       fecha: Date;
 
    @Column({
-      length: 255
+      length: 250
    })
       observaciones: string;
 
