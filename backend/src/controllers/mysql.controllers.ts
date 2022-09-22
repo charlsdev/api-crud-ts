@@ -144,7 +144,7 @@ export const allVaccinations = async (req: Request, res: Response) => {
       res.status(200).json(allVacuncion);
    } else {
       res.status(404).json({
-         msg: 'No existen pacientes registrados'
+         msg: 'No existen vacunaciones registradas'
       });
    }
 };

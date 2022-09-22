@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { PacienteInterface } from '../types.dt';
 import PacientsModel from '../models/mongodb/Pacients';
+import VaccinationsModel from '../models/mongodb/Vaccinations';
 
 export const allPacients = async (req: Request, res: Response) => {
    const allPacients = await PacientsModel.find();
@@ -59,7 +60,7 @@ export const onePacient = async (req: Request, res: Response) => {
       res.status(200).json(onePacient);
    } else {
       res.status(404).json({
-         msg: 'Paciente no encontrado'
+         msg: 'Paciente no encontrado...'
       });
    }
 };
@@ -84,7 +85,7 @@ export const deletePacient = async (req: Request, res: Response) => {
       });
    } else {
       res.status(404).json({
-         msg: 'Paciente no encontrado'
+         msg: 'Paciente no encontrado...'
       });
    }
 };
@@ -129,6 +130,49 @@ export const updatePacient = async (req: Request, res: Response) => {
    } else {
       res.status(404).json({
          msg: 'Paciente no registrado...'
+      });
+   }
+};
+
+export const allVaccinations = async (req: Request, res: Response) => {
+   const vaccinations = await VaccinationsModel.find();
+
+   if (vaccinations.length > 0) {
+      res.status(200).json(vaccinations);
+   } else {
+      res.status(404).json({
+         msg: 'No existe ninguna vacunación registrada'
+      });
+   }
+};
+
+export const oneVaccination = async (req: Request, res: Response) => {
+   const vaccinations = await VaccinationsModel
+      .find({
+         idPacient: req.params.id
+      })
+      .select({
+         fecha: 1,
+         observaciones: 1
+      })
+      .populate({
+         path: 'idPacient',
+         select: 'nombres apellidos'
+      })
+      .populate({
+         path: 'idNurse',
+         select: 'nombres apellidos'
+      })
+      .populate({
+         path: 'idVaccines',
+         select: 'vacuna lote'
+      });
+
+   if (vaccinations) {
+      res.status(200).json(vaccinations);
+   } else {
+      res.status(404).json({
+         msg: 'No existe ninguna vacunación registrada con esa identificación'
       });
    }
 };

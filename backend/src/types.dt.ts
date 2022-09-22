@@ -20,17 +20,17 @@ export interface PacienteInterface {
 }
 
 export interface VaccineInterface {
-   id: string,
-   vacuna: string,
-   lote: string,
-   fechaCaducidad: Date
+   id?: string,
+   vacuna?: string,
+   lote?: string,
+   fechaCaducidad?: Date
 }
 
 export interface VaccinationInterface {
-   id: string,
-   cedPaciente: string,
-   cedEnfermera: string,
-   idVacuna: string,
-   fecha: string,
-   observaciones: string
+   id?: string,
+   cedPaciente?: string,
+   cedEnfermera?: string,
+   idVacuna?: string,
+   fecha?: string,
+   observaciones?: string
 }
